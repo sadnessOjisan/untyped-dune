@@ -100,4 +100,5 @@ let res =
 
 let () = print_flush ()
 
+(* res経由でmain を呼び出すエントリポイント *)
 let () = exit res

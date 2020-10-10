@@ -6,8 +6,11 @@ open Support.Pervasive
 (* Datatypes *)
 
 type term =
+  (* 変数 *)
   | TmVar of info * int * int
+  (* ラムダ抽象 *)
   | TmAbs of info * string * term
+  (* 関数適用 *)
   | TmApp of info * term * term
 
 type binding = NameBind
