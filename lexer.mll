@@ -95,10 +95,10 @@ let addStr ch =
   let x = !stringEnd in
   let buffer = !stringBuffer
 in
-  if x = String.length buffer then
+  if x = String.length (buffer |> Bytes.to_string ) then
     begin
       let newBuffer = String.create (x*2) in
-      String.blit buffer 0 newBuffer 0 x;
+      String.blit (buffer |> Bytes.to_string ) 0 newBuffer 0 x;
       String.set newBuffer x ch;
       stringBuffer := newBuffer;
       stringEnd := x+1
@@ -109,7 +109,7 @@ in
       stringEnd := x+1
     end
 
-let getStr () = String.sub (!stringBuffer) 0 (!stringEnd)
+let getStr () = Bytes.sub (!stringBuffer) 0 (!stringEnd) |> Bytes.to_string
 
 let extractLineno yytext offset =
   int_of_string (String.sub yytext offset (String.length yytext - offset))
