@@ -20,6 +20,7 @@ let rec eval1 ctx t =
       TmApp (fi, t1', t2)
   | _ -> raise NoRuleApplies
 
+(* NOTE: t は term *)
 let rec eval ctx t =
   try
     let t' = eval1 ctx t in
